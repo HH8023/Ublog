@@ -208,19 +208,19 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{{ url('#') }};" class="sidebar-nav-sub-title">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 用户管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="{{ url('admin/users') }}">
+                            <a href="{{ url('admin/user') }}">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 用户列表
                             </a>
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
+                            <a href="{{ url('admin/user/add') }}">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 增加用户
                             </a>
                         </li>
