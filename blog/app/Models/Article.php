@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Article extends Model
 {
     //设置表名
-    const TABLE_NAME="users_register";
+    const TABLE_NAME="";
     protected $table = self::TABLE_NAME;  
     public $timestamps = false;
 }

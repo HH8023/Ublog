@@ -37,6 +37,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 	Route::post('user/add', 'UserController@add');
 
 
+	// 文章模块
+	Route::resource('article','ArticleController');
+
+
 
 
 

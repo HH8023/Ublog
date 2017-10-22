@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+// article的model
+use App\Models\Article;
 
 
-class UserController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::all();
-        // return view('admin.user.index',['users'=>$users]);
-        return view('admin.user.index');
+        $articles = Article::all();
+        return view('admin.article.index');
     }
 
     /**

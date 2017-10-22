@@ -233,7 +233,7 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="table-list.html">
+                            <a href="{{ url('admin/article') }}">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文章列表
                             </a>
                         </li>
@@ -346,7 +346,7 @@
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 
-            <div class="container-fluid am-cf">
+           <!--  <div class="container-fluid am-cf">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
                         <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 部件首页 <small>Amaze UI</small></div>
@@ -357,7 +357,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="row-content am-cf">
             <!-- 中间部分是子页面 -->
