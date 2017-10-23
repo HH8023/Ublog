@@ -33,8 +33,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 
     // 用户模块
     Route::get('user', 'UserController@index');
-    Route::get('user/{id}', 'UserController@auth');
-	Route::post('user/add', 'UserController@add');
+    // Route::get('user/{id}', 'UserController@auth');
+	Route::get('user/add', 'UserController@create');
 
 
 	// 文章模块

@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="row am-cf">
-        <!-- <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
             <div class="tpl-user-card am-text-center widget-body-lg">
                 <div class="tpl-user-card-title">
                     禁言小张
@@ -17,9 +17,9 @@
                     <strong>200多</strong>人。
                 </div>
             </div>
-        </div> -->
+        </div>
 
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
+       <!--  <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
 
             <div class="widget am-cf widget-body-lg">
 
@@ -112,14 +112,14 @@
                                 </tr>
 
 
-                                <!-- more data -->
+                                
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-        </div>
+        </div> --> 
     </div>
 
 @endsection

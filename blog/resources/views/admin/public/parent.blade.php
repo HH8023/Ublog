@@ -221,6 +221,7 @@
 
                         <li class="sidebar-nav-link">
                             <a href="{{ url('admin/user/add') }}">
+                                
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 增加用户
                             </a>
                         </li>
