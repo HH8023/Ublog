@@ -1,126 +1,117 @@
 ﻿@extends('admin.public.parent')
 
 @section('content')
-	<div class="row am-cf">
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
-            <div class="tpl-user-card am-text-center widget-body-lg">
-                <div class="tpl-user-card-title">
-                    禁言小张
-                </div>
-                <div class="achievement-subheading">
-                    月度最佳员工
-                </div>
-                <img class="achievement-image" src="assets/img/user07.png" alt="">
-                <div class="achievement-description">
-                    禁言小张在
-                    <strong>30天内</strong> 禁言了
-                    <strong>200多</strong>人。
-                </div>
+
+<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+    <div class="widget am-cf">
+        <div class="widget-head am-cf">
+            <div class="widget-title am-fl">添加用户</div>
+            <div class="widget-function am-fr">
+                <a href="javascript:;" class="am-icon-cog"></a>
             </div>
         </div>
+        <div class="widget-body am-fr">
 
-       <!--  <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
-
-            <div class="widget am-cf widget-body-lg">
-
-                <div class="widget-body  am-fr">
-                    <div class="am-scrollable-horizontal ">
-                        <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
-                            <thead>
-                                <tr>
-                                    <th>文章标题</th>
-                                    <th>作者</th>
-                                    <th>时间</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="gradeX">
-                                    <td>新加坡大数据初创公司 Latize 获 150 万美元风险融资</td>
-                                    <td>张鹏飞</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>自拍的“政治角色”：观众背对希拉里自拍合影表示“支持”</td>
-                                    <td>天纵之人</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>关于创新管理，我想和你当面聊聊。</td>
-                                    <td>王宽师</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>究竟是趋势带动投资，还是投资引领趋势？</td>
-                                    <td>着迷</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争</td>
-                                    <td>醉里挑灯看键</td>
-                                    <td>2016-09-26</td>
-                                    <td>
-                                        <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                
-                            </tbody>
-                        </table>
+            <form class="am-form tpl-form-line-form" action="{{ url('/admin/user') }}" method="post">
+                <div class="am-form-group">
+                    <label for="user-name" class="am-u-sm-3 am-form-label">编号 <span class="tpl-form-line-small-title">ID</span></label>
+                    <div class="am-u-sm-9">
+                        <input type="text" class="tpl-form-input" id="user-name" placeholder="" name="id">
+                        <!-- <small>请填写标题文字10-20字左右。</small> -->
                     </div>
                 </div>
-            </div>
 
-        </div> --> 
+                <div class="am-form-group">
+                    <label for="user-name" class="am-u-sm-3 am-form-label">手机号 <span class="tpl-form-line-small-title">Tel</span></label>
+                    <div class="am-u-sm-9">
+                        <input type="text" class="tpl-form-input" id="user-name" placeholder="" name="tel">
+                        <!-- <small>请填写标题文字10-20字左右。</small> -->
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">密码 <span class="tpl-form-line-small-title">Password</span></label>
+                    <div class="am-u-sm-9">
+                        <input type="text" placeholder="输入密码" name="pw">
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="user-phone" class="am-u-sm-3 am-form-label">性别 <span class="tpl-form-line-small-title">Sex</span></label>
+                    <div class="am-u-sm-9">
+                        <select data-am-selected="{searchBox: 1}" style="display: none;">
+                            <option value="0">--请选择--</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">头像 <span class="tpl-form-line-small-title">Images</span></label>
+                    <div class="am-u-sm-9">
+                        <div class="am-form-group am-form-file">
+                            <div class="tpl-form-file-img">
+                                <img src="assets/img/a5.png" alt="">
+                            </div>
+                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                <i class="am-icon-cloud-upload"></i> 添加头像图片</button>
+                            <input id="doc-form-file" type="file" multiple="" name="photo">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="user-email" class="am-u-sm-3 am-form-label">出生时间 <span class="tpl-form-line-small-title">Year</span></label>
+                    <div class="am-u-sm-9">
+                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="出生时间" name="birthday" data-am-datepicker="" readonly="">
+                        <small>出生时间为必填</small>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">登录IP地址 <span class="tpl-form-line-small-title">IP</span></label>
+                    <div class="am-u-sm-9">
+                        <input type="text" id="user-weibo" placeholder="请添加IP用点号隔开" name="ip">
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+
+               <!--  <div class="am-form-group">
+                    <label for="user-intro" class="am-u-sm-3 am-form-label">隐藏文章</label>
+                    <div class="am-u-sm-9">
+                        <div class="tpl-switch">
+                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" checked="">
+                            <div class="tpl-switch-btn-view">
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+
+             <!--    <div class="am-form-group">
+                    <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
+                    <div class="am-u-sm-9">
+                        <textarea class="" rows="10" id="user-intro" placeholder="请输入文章内容"></textarea>
+                    </div>
+                </div> -->
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success "/>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
+
 
 @endsection
 

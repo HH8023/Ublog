@@ -4,10 +4,17 @@
 	<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
         <div class="widget am-cf">
             <div class="widget-head am-cf">
-                <div class="widget-title am-fl">斑马线</div>
+                <div class="widget-title am-fl">用户列表</div>
                 <div class="widget-function am-fr">
                     <a href="javascript:;" class="am-icon-cog"></a>
                 </div>
+            </div>
+            <div class="am-fl tpl-header-search">
+                    <form class="tpl-header-search-form" action="{{ url('admin/user') }}" method="post">
+                        {{ csrf_field() }}
+                        <button class="tpl-header-search-btn am-icon-search"></button>
+                        <input class="tpl-header-search-box" type="text" placeholder="搜索姓名" name="user_name">
+                    </form>
             </div>
             <div class="widget-body  widget-body-lg am-fr">
 
@@ -15,109 +22,49 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>PhoneNum</th>
-                            <th>作者</th>
-                            <th>时间</th>
+                            <th>用户ID</th>
+                            <th>用户名</th>
+                            <th>手机号</th>
                             <th>性别</th>
+                            <th>头像</th>
+                            <th>生日</th>
+                            <th>ip</th>
                             <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- foreach($users as $user){
-                            echo $users->name; -->
-
                         
+
+                        @foreach($index as $user)
                             <tr class="gradeX">
-                                <td>Amaze UI 模式窗口</td>
-                                <td>12345</td>
-                                <td>张鹏飞</td>
-                                <td>2016-09-26</td>
-                                <td>男</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->user_id }}</td>
+                                <td>{{ $user->user_name }}</td>
+                                <td>{{ $user->tel }}</td>
+                                <td>{{ ($user->sex == 1)?'男':'女' }}</td>
+                                <td><input type="image" src="{{ asset('admin/assets/img/upload/'.$user->photo) }}" style="width: 60px;" /></td>
+                                <td>{{ $user->birthday }}</td>
+                                <td>{{ $user->ip }}</td>
                                 <td>
                                     <div class="tpl-table-black-operation">
                                         <a href="javascript:;">
-                                            <i class="am-icon-pencil"></i> 编辑
+                                            <i class="am-icon-pencil"></i> 查看
                                         </a>
                                         <a href="javascript:;" class="tpl-table-black-operation-del">
-                                            <i class="am-icon-trash"></i> 删除
+                                            <i class="am-icon-trash"></i> 禁言
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                        <!-- } -->
-                        <tr class="even gradeC">
-                            <td>有适配微信小程序的计划吗</td>
-                            <td>12345</td>
-                            <td>天纵之人</td>
-                            <td>2016-09-26</td>
-                            <td>男</td>
-                            <td>
-                                <div class="tpl-table-black-operation">
-                                    <a href="javascript:;">
-                                        <i class="am-icon-pencil"></i> 编辑
-                                    </a>
-                                    <a href="javascript:;" class="tpl-table-black-operation-del">
-                                        <i class="am-icon-trash"></i> 删除
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>请问有没有amazeui 分享插件</td>
-                            <td>12345</td>
-                            <td>王宽师</td>
-                            <td>2016-09-26</td>
-                            <td>男</td>
-                            <td>
-                                <div class="tpl-table-black-operation">
-                                    <a href="javascript:;">
-                                        <i class="am-icon-pencil"></i> 编辑
-                                    </a>
-                                    <a href="javascript:;" class="tpl-table-black-operation-del">
-                                        <i class="am-icon-trash"></i> 删除
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="even gradeC">
-                            <td>关于input输入框的问题</td>
-                            <td>12345</td>
-                            <td>着迷</td>
-                            <td>2016-09-26</td>
-                            <td>男</td>
-                            <td>
-                                <div class="tpl-table-black-operation">
-                                    <a href="javascript:;">
-                                        <i class="am-icon-pencil"></i> 编辑
-                                    </a>
-                                    <a href="javascript:;" class="tpl-table-black-operation-del">
-                                        <i class="am-icon-trash"></i> 删除
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="even gradeC">
-                            <td>有没有发现官网上的下载包不好用</td>
-                            <td>12345</td>
-                            <td>醉里挑灯看键</td>
-                            <td>2016-09-26</td>
-                            <td>男</td>
-                            <td>
-                                <div class="tpl-table-black-operation">
-                                    <a href="javascript:;">
-                                        <i class="am-icon-pencil"></i> 编辑
-                                    </a>
-                                    <a href="javascript:;" class="tpl-table-black-operation-del">
-                                        <i class="am-icon-trash"></i> 删除
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                        
+                       @endforeach
+                        
 
                         <!-- more data -->
                     </tbody>
                 </table>
-
+                <!-- {!! $index->fragment('foo')->render() !!} -->
+                {!! $index->render() !!}
             </div>
         </div>
     </div>

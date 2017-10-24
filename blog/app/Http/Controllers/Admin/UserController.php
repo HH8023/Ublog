@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-
+use DB;
 
 class UserController extends Controller
 {
@@ -16,11 +16,29 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $users = User::all();
-        // return view('admin.user.index',['users'=>$users]);
-        return view('admin.user.index');
+        $where = [];
+        $ob = DB::table('user');
+        if($request->has('user_name')){
+            $user_name = $request->input('user_name');
+            $where['user_name'] = $user_name;
+            $ob->where('user_name','like','%'.$user_name.'%');
+        }
+        // // 判断是否搜索了sex字段
+        // if($request->has('sex')){
+        //     // 获取用户搜索的sex字段的值
+        //     $sex = $request->input('sex');
+        //     $where['sex'] = $sex;
+        //     // 给查询语句添加上where条件
+        //     $ob->where('sex',$sex);
+        // }
+        // var_dump($list);
+        // dd($request->all());
+        $list = $ob->paginate(2);
+        // dd($list);
+        return view('admin.user.index',['index'=>$list,'where'=>$where]);
+        // return view('admin.user.index');
     }
 
     /**
@@ -30,8 +48,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        echo 12345;
-        // return view('admin.user.add');
+        
+        return view('admin.user.add');
     }
 
     /**
@@ -42,7 +60,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        echo 1234567899987654321;
     }
 
     /**

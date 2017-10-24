@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // 后台路由群组
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
@@ -26,15 +26,16 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
  //    Route::get('user/profile', 'admin');
 
 
-
 	// 后台首页路由
-	Route::get('index','IndexController@index');
+	Route::get('/index','IndexController@index');
 	// Route::get('info','IndexController@info');
 
     // 用户模块
-    Route::get('user', 'UserController@index');
+    Route::get('/user', 'UserController@index');
+    Route::post('/user', 'UserController@index');
     // Route::get('user/{id}', 'UserController@auth');
-	Route::get('user/add', 'UserController@create');
+	Route::get('/user/create', 'UserController@create');
+	Route::post('/user/store', 'UserController@store');
 
 
 	// 文章模块

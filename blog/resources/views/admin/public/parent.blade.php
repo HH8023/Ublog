@@ -220,7 +220,7 @@
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="{{ url('admin/user/add') }}">
+                            <a href="{{ url('admin/user/create') }}">
                                 
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 增加用户
                             </a>
