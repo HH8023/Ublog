@@ -26,6 +26,10 @@
                             <td>{{ $v->id }}</td>
                             <td>{{ $v->user_id }}</td>
                             <td>{{ $v->follow_user_id }}</td>
+                            <td>
+                                <a href="" class='btn btn-sm'>修改</a>
+                                <a href="" class='btn btn-sm'>删除</a>
+                            </td>
                        </tr> 
                      @endforeach 
                     </tbody>

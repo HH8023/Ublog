@@ -41,11 +41,29 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 	Route::resource('article','ArticleController');
 
 
+
+
+
+
+
    //评论模块
 	Route::get('comment','CommentController@comment');
 
+
+
   //关注模块
 	Route::get('follow','FollowController@follow');
+
+
+
+
+
+
+
+  //广告管理
+	Route::resource('advert','AdvertisingController');
+	// Route::get('advert/add','AdvertisingController@add');
+
 
 });
 
