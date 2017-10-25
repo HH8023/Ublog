@@ -15,7 +15,11 @@
 //     return view('welcome');
 // });
 
-// 后台路由群组
+/*
+ * 后台路由群组
+ * 路由前缀：admin
+ * 命名空间: Admin
+ */
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 
     // Route::get('/', function ()    {
@@ -30,8 +34,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 	Route::get('/index','IndexController@index');
 	// Route::get('info','IndexController@info');
 
-    // 用户模块
+    // 用户列表模块
     Route::get('/user', 'UserController@index');
+    // 用户搜索
     Route::post('/user', 'UserController@index');
     // Route::get('user/{id}', 'UserController@auth');
 	Route::get('/user/create', 'UserController@create');

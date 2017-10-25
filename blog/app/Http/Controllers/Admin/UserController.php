@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use DB;
+use App\Http\Models\User;
+
 
 class UserController extends Controller
 {
@@ -18,26 +18,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $where = [];
-        $ob = DB::table('user');
-        if($request->has('user_name')){
-            $user_name = $request->input('user_name');
-            $where['user_name'] = $user_name;
-            $ob->where('user_name','like','%'.$user_name.'%');
-        }
-        // // 判断是否搜索了sex字段
-        // if($request->has('sex')){
-        //     // 获取用户搜索的sex字段的值
-        //     $sex = $request->input('sex');
-        //     $where['sex'] = $sex;
-        //     // 给查询语句添加上where条件
-        //     $ob->where('sex',$sex);
-        // }
-        // var_dump($list);
-        // dd($request->all());
-        $list = $ob->paginate(2);
-        // dd($list);
-        return view('admin.user.index',['index'=>$list,'where'=>$where]);
+        // $u = User::all();
+        $u = User::find(1);
+        // dd($u);
+        
+
+        
+        return view('admin.user.index');
         // return view('admin.user.index');
     }
 
