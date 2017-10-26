@@ -34,7 +34,7 @@
                 <div class="am-form-group">
                     <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">文章内容</label>
                     <div class="am-u-sm-12 am-margin-top-xs">
-                        <textarea class="" rows="10" id="user-intro" placeholder="{{ $title1->content }}"></textarea>
+                        <textarea class="" rows="10" id="user-intro" placeholder="132"></textarea>
                     </div>
                 </div>
                 <div class="am-form-group">

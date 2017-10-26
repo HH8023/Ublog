@@ -11,7 +11,7 @@ class Artcal_detail extends Model
     public $table = 'artical_detail';
 
     //关联的表的主键
-    public $primaryKey = 'id';
+   // public $primaryKey = 'art_id';
     public $timestamps = false;
 
     //不允许数据表被批量操作的字段

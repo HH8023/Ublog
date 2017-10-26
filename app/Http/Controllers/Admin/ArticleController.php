@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Artcal_list;
-
+use App\Http\Models\Artcal_detail;
 class ArticleController extends Controller
 {
     /**
@@ -24,7 +24,9 @@ class ArticleController extends Controller
     {   
         //连接文章列表的模型
         $title = Artcal_list::get();
-        
+        //  $ad = $title->detail->content;
+        // dd($ad);
+
         return view('admin.article.index', ['title' => $title]);
         
     }
@@ -42,7 +44,7 @@ class ArticleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     *内容没完成
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -51,16 +53,33 @@ class ArticleController extends Controller
         //去除令牌
         $add = $request->except('_token','query_string');
         $add = new Artcal_list;
-       // $add = $test->detail->content;
+        $title = new Artcal_detail;
+        
+       //$aid = Artcal_list::get(['id']);
 
+        //$artid = Artcal_detail::get(['art_id']); 
+         //$aid -> $artid;
+        // 文章内容表添加内容
+        $title->content = $request->content;
+        $title->save();
+        // dd($add);
+        // $res = $add->get();
+        //$add->detail->content '==' $request->content;
+        // $re = $res->detail->id;
+        //dd($re);
+        // $add = Artcal_detail->where('art_id','=','id');
+
+        //$add->detail()->content =  $request->content;
+        // 文章list表添加内容
         $add->title = $request->title;
         $add->user_id = $request->user_id;
         $add->pro_id = $request->pro_id;
-       // $add->detail->content = $request->content;
         $add->add_time = $request->add_time;
+
         $add->save();
 
-       // dd($add);
+        //$title->save();
+        //dd($add);
         return view('admin.article.add');
 
 
@@ -68,21 +87,25 @@ class ArticleController extends Controller
     }
 
     /**
-     * 文章编辑页面
-     *
+     * 文章查看页面
+     *内容没完成
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $title =DB::table('artical_list')->where('id',$id)->first();
+        // $title =DB::table('artical_list')->where('id',$id)->first();
         
-        $art_id=$id;
+        // $art_id=$id;
 
-        $title1 = DB::table('artical_detail')->where('art_id',$art_id)->first();
-
-        
-        return view('admin.article.artEditor',['title' => $title],['title1' => $title1]);
+        // $title1 = DB::table('artical_detail')->where('art_id',$art_id)->first();
+       // $title = detail->content;
+        //$title = Artcal_list::get();
+       $title = Artcal_list::where('id',$id)->first();
+        //$title = where('id',$id)->first();
+       //  $ad = $title->detail->content;
+       // dd($ad);
+        return view('admin.article.artEditor',['title' => $title]);
     }
 
     /**
@@ -116,8 +139,9 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-       $res = DB::table('artical_list')->where('id', $id)->delete();
+    {   
+        $res = Artcal_list::where('id',$id)->delete();
+        //$res = DB::table('artical_list')->where('id', $id)->delete();
         if($res > 0){
             return redirect('/article')->with('msg', '删除成功');
         }else{
