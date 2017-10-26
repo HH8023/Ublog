@@ -22,7 +22,7 @@ class Artcal_list extends Model
     	return $this->hasone('App\Http\Models\Artcal_detail','art_id','id');
     }
 
-    use SoftDeletes;
+    // use SoftDeletes;
 
-    public $dates = ['deleted_at'];
+    // public $dates = ['deleted_at'];
 }
