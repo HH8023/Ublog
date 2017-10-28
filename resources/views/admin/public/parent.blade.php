@@ -36,13 +36,12 @@
                 <div class="am-fl tpl-header-switch-button am-icon-list">
                     <span>
 
-                </span>
+                    </span>
                 </div>
                 <!-- 搜索 -->
                 <div class="am-fl tpl-header-search">
                     <form class="tpl-header-search-form" action="javascript:;">
-                        <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
+
                     </form>
                 </div>
                 <!-- 其它功能-->
@@ -50,7 +49,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                            <a href="javascript:;">欢迎你, <span>admin</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -160,7 +159,7 @@
 
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="javascript:;">
+                            <a href="{{ url('admin/logout') }}">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -252,14 +251,14 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="table-list.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 栏目列表
+                            <a href="{{ url('admin/subject/create') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加栏目
                             </a>
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
+                            <a href="{{ url('admin/subject') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 栏目列表
                             </a>
                         </li>
                     </ul>
@@ -371,7 +370,17 @@
     <script src="{{ asset('admin/assets/js/amazeui.datatables.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
-
+    <script type="text/javascript">
+            function doDelsubject(id)
+                {
+                    if(confirm('你确定要删除吗？')){
+                        
+                        var form = document.myform;
+                        form.action = 'subject/'+id;
+                        form.submit();
+                    }
+                }
+    </script>
 </body>
 
 </html>

@@ -12,11 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.index');
 });
+//后台登录
+Route::get('admin/login', 'Admin\LoginController@index');
+Route::get('admin/doLogin', 'Admin\LoginController@doLogin');
+Route::get('admin/logout', 'Admin\LoginController@doLogout');
 
 // 后台路由群组
-Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']], function (){
 
     // Route::get('/', function ()    {
     //     // 使用 Auth 中间件
@@ -41,8 +45,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 	Route::resource('article','ArticleController');
 
 
-
-
+	//栏目模块
+	Route::resource('subject','SubjectController');
+	
 
 
 
