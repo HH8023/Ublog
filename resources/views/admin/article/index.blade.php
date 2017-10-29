@@ -3,6 +3,7 @@
 @section('content')
 
 <!-- 内容区域 -->
+<!-- <form action="#" method="post"> -->
         <div class="row-content am-cf">
                 <div class="row">
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
@@ -41,6 +42,7 @@
                                         </span>
                                     </div>
                                 </div>
+                            <form action="#" method='post'>
                                 <div class="am-u-sm-12">
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                         <thead>
@@ -53,11 +55,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @if (session('msg'))
-                                            <script>
-                                                alert("{{ session('msg') }}");
-                                            </script>
-                                        @endif
                                         @foreach ($title as $a)
                                             <tr class="gradeX">
                                                 <td>{{ $a->id }}</td>
@@ -69,7 +66,7 @@
                                                         <a href="{{ url('admin/article/'.$a->id) }}">
                                                             <i class="am-icon-eye"></i> 查看
                                                         </a>
-                                                        <a href="javascript:doDel({{ $a->id }})" class="tpl-table-black-operation-del">
+                                                        <a href="javascript:" onclick="doDel({{ $a->id }})" class="tpl-table-black-operation-del">
                                                             <i class="am-icon-trash"></i> 删除
                                                         </a>
                                                         <a href="javascript:;" class="tpl-table-black-operation-del">
@@ -83,6 +80,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </form>
+                                 {!! $title->render() !!}
                                 <div class="am-u-lg-12 am-cf">
                                     <div class="am-fr">
                                         <ul class="am-pagination tpl-pagination">
@@ -103,7 +102,52 @@
                 </div>
             </div>
 
-
+<!-- </form> -->
 
 @endsection
+<script>
+    // function doDel(id)
+    // {
+    //     if(confirm('你确定要删除吗？')){
+    //         var form = document.myform;
+    //         form.action = 'article/'+id;
+    //         form.submit();
+    //     }
+        
+    // }
 
+
+
+
+function doDel(id){
+
+    //询问框
+    layer.confirm('确认删除？', {
+        btn: ['确认','取消'] //按钮
+    }, function(){
+//                通过ajax 向服务器发送一个删除请求
+    
+//                $.post('请求的路径'，携带的数据参数，执行后返回的数据)
+//                {'key':'value','key1':'value1'}
+        $.post("{{url('admin/article/')}}/"+id,{'_method':'delete','_token':"{{csrf_token()}}"},function(data){
+//                    需要将json字符串变成json对象
+            //var data = JSON.parse(data);
+
+//                    JSON.parse(jsonstr); //可以将json字符串转换成json对象
+//                    JSON.stringify(jsonobj); //可以将json对象转换成json对符串
+
+            if(data.status == 0){
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 6});
+            }else{
+                location.href = location.href;
+                layer.msg(data.msg, {icon: 5});
+            }
+
+
+        })
+//
+
+    });
+}
+</script>

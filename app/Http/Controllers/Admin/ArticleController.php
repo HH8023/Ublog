@@ -23,9 +23,9 @@ class ArticleController extends Controller
     public function index()
     {   
         //连接文章列表的模型
-        $title = Artcal_list::get();
+        $title = Artcal_list::paginate(1);
         //  $ad = $title->detail->content;
-        // dd($ad);
+        // dd($title);
 
         return view('admin.article.index', ['title' => $title]);
         
@@ -55,31 +55,22 @@ class ArticleController extends Controller
         $add = new Artcal_list;
         $title = new Artcal_detail;
         
-       //$aid = Artcal_list::get(['id']);
-
-        //$artid = Artcal_detail::get(['art_id']); 
-         //$aid -> $artid;
-        // 文章内容表添加内容
-        $title->content = $request->content;
-        $title->save();
-        // dd($add);
-        // $res = $add->get();
-        //$add->detail->content '==' $request->content;
-        // $re = $res->detail->id;
-        //dd($re);
-        // $add = Artcal_detail->where('art_id','=','id');
-
-        //$add->detail()->content =  $request->content;
+       
         // 文章list表添加内容
         $add->title = $request->title;
         $add->user_id = $request->user_id;
         $add->pro_id = $request->pro_id;
         $add->add_time = $request->add_time;
-
+        
+        //把主表的id赋给art_id
         $add->save();
+        $id = $add->id;
 
-        //$title->save();
-        //dd($add);
+        //文章内容表art_id,内容添加
+        $title->art_id = $id;
+        $title->content = $request->content;
+        $title->save();
+
         return view('admin.article.add');
 
 
@@ -94,18 +85,13 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        // $title =DB::table('artical_list')->where('id',$id)->first();
-        
-        // $art_id=$id;
+        // 查看list表信息
+        $title = Artcal_list::where('id',$id)->first();
 
-        // $title1 = DB::table('artical_detail')->where('art_id',$art_id)->first();
-       // $title = detail->content;
-        //$title = Artcal_list::get();
-       $title = Artcal_list::where('id',$id)->first();
-        //$title = where('id',$id)->first();
-       //  $ad = $title->detail->content;
-       // dd($ad);
-        return view('admin.article.artEditor',['title' => $title]);
+        // 查看detail表内容
+        $aid= Artcal_detail::where('art_id',$id)->first();
+       //dd($aid);
+        return view('admin.article.artEditor',['title' => $title,'aid'=>$aid]);
     }
 
     /**
@@ -140,12 +126,26 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {   
-        $res = Artcal_list::where('id',$id)->delete();
-        //$res = DB::table('artical_list')->where('id', $id)->delete();
-        if($res > 0){
-            return redirect('/article')->with('msg', '删除成功');
+       //查询要删除的记录的模型
+        $title = Artcal_list::find($id);
+      
+        // $aid= Artcal_detail::find($id)
+        //执行删除操作
+        $re = $title->delete();
+        //根据返回的结果处理成功和失败
+        if($re){
+          $data=[
+              'status'=>0,
+              'msg'=>'删除成功'
+          ];
         }else{
-            return redirect('/article')->with('msg', '删除失败');
+            $data=[
+                'status'=>1,
+                'msg'=>'删除失败'
+            ];
         }
+//        return json_encode($data);
+//        return response()->json($data);
+        return  $data;
     }
 }

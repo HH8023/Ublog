@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/app.css') }}" />
     <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('layer/layer.js' )}}"></script>
+    <script type="text/javascript" src="{{ asset('layer/jquery.js')}}"></script>
 </head>
 
 <body data-type="index">
@@ -363,17 +363,7 @@
             <!-- 中间部分是子页面 -->
                 @yield('content')
             </div>
-            <script>
-                function doDel(id)
-                {
-                    if(confirm('你确定要删除吗？')){
-                        var form = document.myform;
-                        form.action = 'article/'+id;
-                        form.submit();
-                    }
-                    
-                }
-            </script>
+            
         </div>
     </div>
     </div>
