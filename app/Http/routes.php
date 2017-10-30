@@ -57,3 +57,20 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']
 
 });
 
+
+
+
+// 前台路由群组
+Route::get('/home/index','Home\IndexController@index');
+//前台列表页路由
+Route::get('/cate/{id}','Home\IndexController@cate');
+//前台详情页路由
+Route::get('/a/{id}','Home\IndexController@article');
+
+
+
+
+
+
+
+
