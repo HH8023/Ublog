@@ -291,7 +291,26 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="chart.html">
+                    <a href="javascript:;" class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 友情链接
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/links') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 链接列表
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link">
+                            <a href="{{ url('admin/links/add') }}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 增加链接
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link">
+                    <a href="{{ url('admin/config') }}">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 网站管理
 
                     </a>

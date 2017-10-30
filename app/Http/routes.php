@@ -19,8 +19,8 @@ Route::get('admin/login', 'Admin\LoginController@index');
 Route::post('admin/doLogin', 'Admin\LoginController@doLogin');
 Route::get('admin/logout', 'Admin\LoginController@doLogout');
 
-// 后台路由群组
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']], function (){
+// 后台路由群组                                     ,'middleware' => ['isLogin']
+Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 
     // Route::get('/', function ()    {
     //     // 使用 Auth 中间件
@@ -51,8 +51,19 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']
 
 	//栏目模块
 	Route::resource('subject','SubjectController');
+
+
+	//友情链接
+	Route::resource('links','LinksController');
 	
 
+
+	// 网站配置
+    Route::resource('config','ConfigController');
+    // 修改路由
+    Route::post('config/changecontent','ConfigController@changeContent');
+	// 写入配置
+    Route::get('putfile','ConfigController@putFile');
 
 
 });
