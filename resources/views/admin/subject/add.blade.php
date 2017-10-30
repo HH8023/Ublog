@@ -38,12 +38,7 @@
                                     <div class="am-form-group">
                                         <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图<span class="tpl-form-line-small-title">Images</span></label>
                                         <div class="am-u-sm-9">
-                                            <div class="am-form-group am-form-file">
-                                                <div class="tpl-form-file-img">
-                                                    <img src="" alt="">
-                                                </div>
-                                                <input type="file" class="am-btn am-btn-danger am-btn-sm" placeholder="添加图片" name="photo">
-                                            </div>
+                                            <input type="file" class="am-btn am-btn-danger am-btn-sm" name="photo" >
                                         </div>
                                     </div>
 

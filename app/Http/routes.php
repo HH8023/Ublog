@@ -14,6 +14,12 @@
 Route::get('/', function () {
     return view('admin.index');
 });
+//前台登录
+Route::get('home/login','Home\LoginController@login');
+Route::get('home/register','Home\LoginController@register');
+Route::get('home/code','Home\LoginController@code');
+Route::post('home/doregister','Home\LoginController@doRegister');
+Route::post('home/dologin','Home\LoginController@doLogin');
 //后台登录
 Route::get('admin/login', 'Admin\LoginController@index');
 Route::get('admin/doLogin', 'Admin\LoginController@doLogin');
@@ -40,10 +46,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']
     Route::get('user/{id}', 'UserController@auth');
 	Route::post('user/add', 'UserController@add');
 
-
 	// 文章模块
 	Route::resource('article','ArticleController');
-
 
 	//栏目模块
 	Route::resource('subject','SubjectController');

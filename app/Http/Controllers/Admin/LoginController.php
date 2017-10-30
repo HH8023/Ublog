@@ -45,5 +45,5 @@ class LoginController extends Controller
     	$request->session()->pull('admin');
     	return redirect('admin/login');
     }
-    
+
 }

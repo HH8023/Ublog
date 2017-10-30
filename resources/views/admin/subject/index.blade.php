@@ -66,7 +66,7 @@
                                             <tr class="gradeX">
                                                 <td class="am-text-middle">{{ $v->id }}</td>
                                                 <td>
-                                                    <img src="{{ asset('admin/assets/img/k.jpg') }}" class="tpl-table-line-img" alt="">
+                                                    <img src="{{ asset('upload/'.$v->photo) }}" class="tpl-table-line-img" alt="">
                                                 </td>
 
                                                 <td class="am-text-middle">{{ $v->name }}</td>

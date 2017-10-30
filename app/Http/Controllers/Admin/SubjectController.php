@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Storage;
 use DB;
 
 class SubjectController extends Controller
@@ -62,7 +62,35 @@ class SubjectController extends Controller
     {
         //去除token
         $data = $request->except('_token');
-        // 执行添加并且得到id
+//        dd($data['photo']);
+        // 单文件上传
+        // 判断请求对象中是否有需要上传的文件
+
+        if($data['photo'] !== null){
+            //判断文件是否有效
+            if($data['photo']->isValid()){
+                //生成上传文件对象
+                $file = $data['photo'];
+                //获取后缀名
+                $ext = $file->getClientOriginalExtension();
+                // dd($ext);
+                // // 随机生成新文件名
+                $picname = time().rand(1000,9999).'.'.$ext;
+                // 另存为
+//                dd($picname);
+                $file->move('./upload',$picname);
+                if($file->getError()>0){
+                    echo '上传失败';
+                    die;
+                }else{
+                    echo '上传成功';
+
+                }
+            }
+        }
+        $data['photo'] = $picname;
+//        dd($data);
+//         执行添加并且得到id
         $id = DB::table('subject')->insertGetId($data);
         //如果有id说明添加成功
         if($id > 0){
