@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/app.css') }}" />
     <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
-
+    <script type="text/javascript" src="{{ asset('layer/layer.js' )}}"></script>
+    <script type="text/javascript" src="{{ asset('layer/jquery.js')}}"></script>
 </head>
 
 <body data-type="index">
@@ -43,7 +43,8 @@
                 <!-- 搜索 -->
                 <div class="am-fl tpl-header-search">
                     <form class="tpl-header-search-form" action="javascript:;">
-
+                        <button class="tpl-header-search-btn am-icon-search"></button>
+                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
                     </form>
                 </div>
                 <!-- 其它功能-->
@@ -240,7 +241,7 @@
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="table-list-img.html">
+                            <a href="{{ url('admin/particle') }}">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
                             </a>
                         </li>
@@ -347,24 +348,10 @@
         <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 
-           <!--  <div class="container-fluid am-cf">
-                <div class="row">
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 部件首页 <small>Amaze UI</small></div>
-                        <p class="page-header-description">Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件。</p>
-                    </div>
-                    <div class="am-u-lg-3 tpl-index-settings-button">
-                        <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
-                    </div>
-                </div>
-
-            </div> -->
-
             <div class="row-content am-cf">
             <!-- 中间部分是子页面 -->
                 @yield('content')
             </div>
-
         </div>
     </div>
     </div>

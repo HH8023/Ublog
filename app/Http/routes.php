@@ -43,6 +43,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']
 
 	// 文章模块
 	Route::resource('article','ArticleController');
+	//图片列表页显示
+	Route::get('particle','ArticleController@plist');
+	//文章编辑页面
+	//Route::get('article/wzbj','ArticleController');
 
 
 	//栏目模块
