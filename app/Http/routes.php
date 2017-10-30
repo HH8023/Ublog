@@ -14,6 +14,12 @@
 Route::get('/', function () {
     return view('admin.index');
 });
+//前台登录
+Route::get('home/login','Home\LoginController@login');
+Route::get('home/register','Home\LoginController@register');
+Route::get('home/code','Home\LoginController@code');
+Route::post('home/doregister','Home\LoginController@doRegister');
+Route::post('home/dologin','Home\LoginController@doLogin');
 //后台登录
 Route::get('admin/login', 'Admin\LoginController@index');
 Route::post('admin/doLogin', 'Admin\LoginController@doLogin');
@@ -40,14 +46,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
     Route::get('user/{id}', 'UserController@auth');
 	Route::post('user/add', 'UserController@add');
 
-
 	// 文章模块
 	Route::resource('article','ArticleController');
 	//图片列表页显示
 	Route::get('particle','ArticleController@plist');
 	//文章编辑页面
 	//Route::get('article/wzbj','ArticleController');
-
 
 	//栏目模块
 	Route::resource('subject','SubjectController');
