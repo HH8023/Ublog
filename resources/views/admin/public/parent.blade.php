@@ -14,6 +14,8 @@
     <link rel="apple-touch-icon-precomposed" href="{{ asset('admin/assets/i/app-icon72x72@2x.png') }}">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="{{ asset('admin/assets/js/echarts.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/jquery-1.10.2.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/amazeui.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/app.css') }}" />
