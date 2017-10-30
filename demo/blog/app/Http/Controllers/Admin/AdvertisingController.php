@@ -14,16 +14,16 @@ class AdvertisingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-
        
-        $ob = DB::table('advert');
-        $list = $ob->paginate(1);
-        // dd($list);
-          return view('admin.advert.advertising',['adve'=>$list]);
+        $uid=$request->get('ad_id');
 
+        $uid = DB::table('advert')->where('cid','like', '%'.$uid.'%')->get();
+
+
+        return view('admin.advert.advertising', ['adve' => $uid]);
     }
 
     /**
@@ -33,8 +33,9 @@ class AdvertisingController extends Controller
      */
     public function create()
     {
-        // echo 1111111;
+        // return 11111111;
          return view('admin.advert.add');
+        
     }
 
     /**
@@ -45,18 +46,30 @@ class AdvertisingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            
+        // $users = DB::table('advert')->select('state', 'start_time as open',)->get();
+            $input=$request->except('_token','query_string');
+            // 执行添加并且得到id
+            $id = DB::table('advert')->insertGetId($input);
+            //如果有id说明添加成功
+            if($id > 0){
+                //跳转到admin/advert路由，携带一个闪存
+                return redirect('admin/advert')->with('msg','添加成功');
+            } 
+
+          
     }
 
     /**
-     * Display the specified resource.
+     * Display the speecified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+      // echo 2222;
+        
     }
 
     /**
@@ -65,11 +78,14 @@ class AdvertisingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+     public function edit($id)
+     {  
+         
+       
+         $user = DB::table('advert')->where('ad_id', $id)->first();
+          // dd($user);
+          return view('admin/advert/update',['adve'=>$user]);    
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -77,19 +93,39 @@ class AdvertisingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+     public function update(Request $request, $id)
+     {
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+        
+          $data = $request->except('_token','_method','query_string');
+          
+         $res = DB::table('advert')->where('ad_id', $id)->update($data);
+
+         // dd($res);
+         if($res > 0){
+             return redirect('admin/advert')->with('msg', '修改成功');
+         }else{
+        return redirect('admin/advert')->with('msg', '修改失败(或者并未修改)');
+         }
+     
+     }
+
+     /**
+      * Remove the specified resource from storage.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
+     public function destroy($id)
+     {
+          // return 11111;
+        
+         $re = DB::table('advert')->where('ad_id', $id)->delete();
+        
+        if($re > 0){
+            return redirect('admin/advert')->with('msg', '删除成功');
+        }else{
+            return redirect('admin/advert')->with('msg', '删除失败');
+        }
+     }
 }

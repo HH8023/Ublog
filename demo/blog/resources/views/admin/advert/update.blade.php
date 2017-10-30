@@ -31,24 +31,25 @@
                             </div>
                          
                             <div class="widget-body am-fr">
-
-                                <form action="{{ url('admin/advert')}}" class="am-form tpl-form-line-form" method='post'>
-                                        {{ csrf_field() }}
+                           
+                                <form action="{{ url('admin/advert/'.$adve->ad_id)}}" class="am-form tpl-form-line-form" method='post'>
+                                         {{ csrf_field() }}
+                                       {{ method_field('PUT') }}
                                         <div class="am-form-group">
                                         <label for="user-phone" class="am-u-sm-3 am-form-label">作者 <span class="tpl-form-line-small-title">Author</span></label>
                                         <div class="am-u-sm-9">
                                           
-                                           <input type="text" class="form-control m-b-10" name='cid'>
+                                           <input type="text" class="form-control m-b-10" name='cid' value="{{$adve->cid}}">
                                         </div>
-                                    </div>
+                                </div>
 
 
-
+                                      
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="ad_title">
-                                            <small>请填写标题文字10-20字左右。</small>
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="ad_title" value="{{$adve->ad_title}}">
+                                            <small>请填写标题文字10-20左右。</small>
                                         </div>
                                     </div>
 
@@ -57,7 +58,7 @@
                                         <div class="am-u-sm-9">
                                              <div class="result_wrap">
                                                 <ul class="list_btn">
-                                                    <li><input name="ad_image" type="file"> <span onclick="pic_minus(this)"><i class="fa fa-minus-circle"></i></span></li>
+                                                    <li><input name="ad_image" type="file"> <span onclick="pic_minus(this)" value="{{$adve->ad_image}}"><i class="fa fa-minus-circle"></i></span></li>
                                                 </ul>
                                             </div>
 
@@ -65,30 +66,29 @@
                                     </div>
 
 
-
                                   
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">网址 <span class="tpl-form-line-small-title">Title</span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="ad_address">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="ad_address" value="{{$adve->ad_address}}">
                                          
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">状态 <span class="tpl-form-line-small-title">Title</span></label>
-                                         <div class="am-u-sm-9">
+                                        <div class="am-u-sm-9">
                                             <input type="radio" name="ad_state" value='0'>开启
                                             <input type="radio" name="ad_state" value='1'>关闭
-                                            <!-- <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="state"> -->
                                          
+                                
                                         </div>
                                     </div>
 
                                     <div class="am-form-group">
                                         <label for="user-email" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly="" name="start_time">
+                                            <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly="" name="start_time" value="{{$adve->start_time}}">
                                             <small>发布时间为必填</small>
                                         </div>
                                     </div>
@@ -97,19 +97,20 @@
                                        <div class="am-form-group">
                                         <label for="user-email" class="am-u-sm-3 am-form-label">结束时间 <span class="tpl-form-line-small-title">Time</span></label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="am-form-field tpl-form-no-bg" placeholder="结束时间" data-am-datepicker="" readonly="" name="end_time">
+                                            <input type="text" class="am-form-field tpl-form-no-bg" placeholder="结束时间" data-am-datepicker="" readonly="" name="end_time" value="{{$adve->end_time}}">
                                             <small>结束时间为必填</small>
                                         </div>
                                     </div>
 
 
-                                    <div class="am-form-group">
+                                    <!-- <div class="am-form-group"> -->
                                         <div class="am-u-sm-9 am-u-sm-push-3">
 
-                                            <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success "></input>
+                                            <input type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success " value='修改用户'>
                                         </div>
-                                    </div>
+                                   <!--  </div> -->
                                 </form>
+                               
                             </div>
                         </div>
                 

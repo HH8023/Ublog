@@ -12,12 +12,20 @@
                     <a href="javascript:;" class="am-icon-cog"></a>
                 </div>
             </div>
-
+                    @if (session('msg'))
+                        <script>
+                            alert("{{ session('msg') }}");
+                        </script>
+                    @endif
+                  <form name='myform' action="" method='post' style='display:none'>
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                </form>
             <!-- 搜索 -->
                 <div class="am-fl tpl-header-search">
-                    <form class="tpl-header-search-form" action="{{ url('admin/advertising')}}">
+                    <form class="tpl-header-search-form" action="{{ url('admin/advert')}}" >
                         <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索作者..." name='name'>
+                        <input class="tpl-header-search-box" type="text" placeholder="搜索作者..." name='uid'>
                     </form>
 
                 </div>
@@ -28,59 +36,70 @@
                
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th>ad_id</th>
                             <th>用户</th>
                             <th>标题</th>
-                            <th广告图></th>
+                            <th>广告图</th>
                             <th>地址</th>
                             <th>状态</th>
                             <th>广告开始时间</th>
                             <th>广告结束时间</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
+                            <a href="{{ url('admin/advert/create')}}">
+                                <i class="am-icon-pencil"></i> 添加
+                            </a>
                     <tbody>
                  
                        @foreach ($adve as $v) 
                        <tr class="gradeX">
-                            <td>{{ $v->id }}</td>
-                            <td>{{ $v->uid}}</td>
-                            <td>{{ $v->title }}</td>
-                            <td>{{ $v->image }}</td>
-                            <td>{{ $v->address }}</td>
-                            <td>{{ $v->state }}</td>
+                            <td>{{ $v->ad_id }}</td>
+                            <td>{{ $v->cid}}</td>
+                            <td>{{ $v->ad_title }}</td>
+                            <td><img src='{{ asset("image/"."$v->ad_image") }}' style="width:100px;"></td>
+                            <td>{{ $v->ad_address }}</td>
+                            <td>{{ $v->ad_state }}</td>
                             <td>{{ $v->start_time }}</td>
                              <td>{{ $v->end_time }}</td>
-                            <td>
-                            	  <a href="{{ url('admin/advert/create')}}" class='btn btn-sm'>添加</a>
-                                 <a href="" class='btn btn-sm'>修改</a>
-                                 <a href="" class='btn btn-sm'>删除</a>
-
+                        
+                             <td class="am-text-middle">
+                                <div class="tpl-table-black-operation">
+                                 
+                                    <a href="{{ url('admin/advert/'.$v->ad_id.'/edit')}}">
+                                        <i class="am-icon-pencil"></i> 修改
+                                    </a>
+                                    <a href="javascript:doDel({{ $v->ad_id }})" class="tpl-table-black-operation-del">
+                                        <i class="am-icon-trash"></i> 删除
+                                    </a>
+                                </div>
                             </td>
                        </tr> 
                      @endforeach 
                         <!-- more data -->
+
+                     
                     </tbody>
                 </table>
-                  <!-- 分页 -->
-               <div class="am-u-lg-12 am-cf">
-
-                    <div class="am-fr">
-                        <ul class="am-pagination tpl-pagination">
-                            <li class="am-disabled"><a href="">«</a></li>
-                            <li class="am-active"><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="#">3</a></li>
-                          
-                            <li><a href="#">»</a></li>
-                        </ul>
-                    </div>
-                </div>
+                
+                  <!-- 分页 -->             
+            
 
 
             </div>
         </div>
     </div>
-
+    <script>
+        function doDel(id)
+        {
+            // alert(id);
+            if(confirm('你确定要删除吗？')){
+                var form = document.myform;
+                form.action = 'advert/'+id;
+                form.submit();
+            }
+        }
+    </script>
 
 
 @endsection

@@ -46,6 +46,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 
 
 
+
+
+
+
+
+
+
    //评论模块
 	Route::get('comment','CommentController@comment');
 

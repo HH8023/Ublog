@@ -363,7 +363,7 @@
             <!-- 中间部分是子页面 -->
                 @yield('content')
             </div>
-
+            
         </div>
     </div>
     </div>
