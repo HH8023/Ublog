@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 //后台登录
 Route::get('admin/login', 'Admin\LoginController@index');
-Route::get('admin/doLogin', 'Admin\LoginController@doLogin');
+Route::post('admin/doLogin', 'Admin\LoginController@doLogin');
 Route::get('admin/logout', 'Admin\LoginController@doLogout');
 
 // 后台路由群组

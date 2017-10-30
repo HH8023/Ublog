@@ -41,7 +41,8 @@
             <div class="tpl-login-content">
                 <div class="tpl-login-logo">
                 </div>
-                <form class="am-form tpl-form-line-form" action="{{ url('admin/doLogin') }}">
+                <form class="am-form tpl-form-line-form" method="post" action="{{ url('admin/doLogin') }}">
+                    {{ csrf_field() }}
                     <div class="am-form-group">
                         <input type="text" class="tpl-form-input" id="aname" name="aname" placeholder="请输入账号">
                     </div>
@@ -66,7 +67,7 @@
     </div>
     <script src="{{asset('admin/assets/js/amazeui.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/app.js')}}"></script>
-    <script>
+   <!--  <script>
         $('#login').click(function(){
             var aname = $('#aname').val();
             var apwd = $('#apwd').val();
@@ -91,7 +92,7 @@
                 }
             });
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

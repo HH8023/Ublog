@@ -19,6 +19,7 @@ class LoginController extends Controller
     public function doLogin(Request $request)
     {
     	$req = $request->all();
+        // dd($req);
 
     	$admin = DB::table('admin')->where('aname', $req['aname'])->first();
     	 // 查到了就是个对象，没查到就是null
