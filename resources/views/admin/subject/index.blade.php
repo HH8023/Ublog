@@ -74,7 +74,7 @@
                                                 <td class="am-text-middle">{{ $v->notice }}</td>
                                                 <td class="am-text-middle">
                                                     <div class="tpl-table-black-operation">
-                                                        <a href="{{ url('admin/subject/'.$v->id.'/edit') }}">
+                                                        <a href="({{ url'admin/subject/'.$v->id.'/edit') }}">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
                                                         <a href="javascript:doDelsubject({{ $v->id }})" class="tpl-table-black-operation-del">

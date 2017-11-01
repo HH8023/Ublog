@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Model;
+namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Friend extends Model
+class Links extends Model
 {
     //
-    protected $table = 'links';
-    protected $primaryKey = 'lid';
+   	const TABLE_NAME = 'links';
+   	protected $primaryKey = 'lid';
     protected $guarded = [];
     public $timestamps = false;
 }

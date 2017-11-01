@@ -29,7 +29,7 @@ class IndexController extends Controller
     public function cate($id)
     {
         //
-        echo 222;
+        return view('home.cate');
     }
 
     /**

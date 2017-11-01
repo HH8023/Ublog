@@ -60,11 +60,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function (){
 
 	// 网站配置
     Route::resource('config','ConfigController');
-    // 修改路由
-    Route::post('config/changecontent','ConfigController@changeContent');
-	// 写入配置
-    Route::get('putfile','ConfigController@putFile');
-
+    Route::post('config/{id}','ConfigController@update');
+  
 
 });
 
