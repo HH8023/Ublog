@@ -1,6 +1,8 @@
 @extends('admin.public.parent')
 
+
 @section('content')
+
 <div class="row">
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
         <div class="widget am-cf">
