@@ -20,6 +20,7 @@ Route::get('home/register','Home\LoginController@register');
 Route::get('home/code','Home\LoginController@code');
 Route::post('home/doregister','Home\LoginController@doRegister');
 Route::post('home/dologin','Home\LoginController@doLogin');
+
 //后台登录
 Route::get('admin/login', 'Admin\LoginController@index');
 Route::get('admin/doLogin', 'Admin\LoginController@doLogin');
@@ -27,15 +28,6 @@ Route::get('admin/logout', 'Admin\LoginController@doLogout');
 
 // 后台路由群组
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']], function (){
-
-    // Route::get('/', function ()    {
-    //     // 使用 Auth 中间件
-    // });
-// 'middleware'=>'login'
-	// // 用户模块
- //    Route::get('user/profile', 'admin');
-
-
 
 	// 后台首页路由
 	Route::get('index','IndexController@index');
@@ -51,9 +43,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware' => ['isLogin']
 
 	//栏目模块
 	Route::resource('subject','SubjectController');
-	
-
-
 
 });
 

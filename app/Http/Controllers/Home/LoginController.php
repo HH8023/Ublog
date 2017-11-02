@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\home;
+namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use iscms\Alisms\SendsmsPusher as Sms;
+use Flc\Dysms\Client;
+use Flc\Dysms\Request\SendSms;
+use Crypt;
 use DB;
 
 class LoginController extends Controller
@@ -25,69 +27,70 @@ class LoginController extends Controller
         return view('home.login.register');
     }
 
-    public $sms;
-
-    public function __construct(Sms $sms)
-    {
-        $this->sms=$sms;
-    }
     public function code(Request $request)
     {
-        // 获取input全部信息
         $input = $request->all();
-        // 随机生成验证码
-        $number = rand(100000,999999);
-//        将验证码存在session里
-        session_start();
-        $request->session()->put('number', $number);
-//        获取input的手机号
-        $phone = $input['tel'];
-        // 获取验证码
-        $yzm = [
-            'number' => $number
+        $phone = $input['phone'];
+        $config = [
+            'accessKeyId'    => 'LTAIZX4nsRNBnp24',
+            'accessKeySecret' => '8zZGaDlDVNX8DPpVWmRvcx0p5b6S66',
         ];
-        // 获取数字签名
-        $name = '兄弟连';
-        // 转换验证码的json格式
-        $content = json_encode($yzm);
-        // 获取sms的模板CODE
-        $code = 'SMS_75835101';
-        // 全部获取之后发送到个人手机号
-        $result=$this->sms->send($phone,$name,$content,$code);
+        $client  = new Client($config);
+        $sendSms = new SendSms;
+        $code = rand(100000, 999999);
+        $sendSms->setPhoneNumbers($phone);
+        $sendSms->setSignName('郑Selfmade');
+        $sendSms->setTemplateCode('SMS_105505009');
+        $sendSms->setTemplateParam(['code' => $code]);
+        $client->execute($sendSms);
+//        $code = session('code',$code);
+        session(['code'=>$code]);
         return 'ok';
     }
 
     public function doRegister(Request $request)
     {
-        session_start();
-        //去除token
-        $data = $request->except('_token');
-//        dd($data['sms_code']);
-//        dd($request->session['number']);
-//        if(session['number']!==$data['sms_code']){
-//            return redirect('home/register')->with('msg','验证码不正确');
-//            die;
-//        }
-//        DB::table('users');
+        $code = session('code');
+        $data = $request->all();
+        $tel = DB::table('users')->where('tel', $data['tel'])->first();
+//        dd($tel);
+        if($tel == null){
+//            dd($data);
+            if($data['sms_code'] != $code){
+                return redirect('home/register')->with('msg','验证码不正确');
+            }
+            //去除token
+            $data = $request->except('sms_code','_token');
+            //密码MD5加密
+            $data['password'] = Crypt::encrypt($data['password']);
+//        dd($data);
+            session()->pull('code');
+            //执行添加并且得到id
+            $id = DB::table('users')->insertGetId($data);
+            //如果有id说明添加成功
+            if($id > 0){
+                //跳转到/types路由，携带一个闪存
+                return redirect('home/login')->with('msg','注册成功，请登录');
+            }
+        }else{
+            return redirect('home/login')->with('msg','用户已注册，请登录');
+        }
     }
     public function doLogin(Request $request)
     {
 //        dd($request->all());
-        $data = $request->except('_token','session');
+        $data = $request->except('_token');
         $tel = DB::table('users')->where('tel', $data['tel'])->first();
 //        dd($tel);
         if($tel == null){
             return redirect('home/register')->with('msg','无此用户，请先注册');
         }else{
-//            dd($tel);
-//            echo 1234;
-            if ($data['password'] == $tel->password) {
-                session_start();
-                $request->session()->put('tel', $data['tel']);
-                return 12345;
-            } else {
+            $pass = Crypt::decrypt($tel->password);
+//            dd($data['password']);
+            if ($data['password'] !== $pass) {
                 return redirect('home/login')->with('msg','密码不正确');
             }
+            echo 12345;
         }
     }
 

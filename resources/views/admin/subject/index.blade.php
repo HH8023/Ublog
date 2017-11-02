@@ -68,7 +68,6 @@
                                                 <td>
                                                     <img src="{{ asset('upload/'.$v->photo) }}" class="tpl-table-line-img" alt="">
                                                 </td>
-
                                                 <td class="am-text-middle">{{ $v->name }}</td>
                                                 <td class="am-text-middle">{{ $v->add_time }}</td>
                                                 <td class="am-text-middle">{{ $v->notice }}</td>
@@ -101,5 +100,14 @@
                     </div>
                 </div>
             </div>
-
+            <script type="text/javascript">
+                function doDelsubject(id)
+                {
+                    if(confirm('你确定要删除吗？')){
+                        var form = document.myform;
+                        form.action = 'subject/'+id;
+                        form.submit();
+                    }
+                }
+            </script>
 @endsection

@@ -70,15 +70,15 @@
 
           <div class="input-prepend restyle">
               <input type="text" name="sms_code" id="sms_code" placeholder="手机验证码"/>
-            <button type="button" onclick="code()" class="sign-up-button1"/>点击获取手机验证码</button>
-            <i class="iconfont ic-verify"></i>
+              <button type="button" onclick="code()" class="sign-up-button1"/>点击获取手机验证码</button>
+              <i class="iconfont ic-verify"></i>
           </div>
 
             {{--<button type="button" onclick="code()" class="sign-up-button"/>手机验证码</button>--}}
 
           <div class="input-prepend">
-            <input placeholder="设置密码" type="password" name="password" id="password" />
-            <i class="iconfont ic-password"></i>
+              <input placeholder="设置密码" type="password" name="password" id="password" />
+              <i class="iconfont ic-password"></i>
           </div>
           <input type="submit" value="注册" class="sign-up-button" data-disable-with="注册" />
           <p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守简书<br> <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a> 和 <a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a> 。</p>
@@ -108,19 +108,24 @@
   <script src="{{ asset('home/js/entry-fb4e37cf509d7b10df9c.js') }}" crossorigin="anonymous"></script>
   <script type="text/javascript">
   function code(){
-    var phone = $('#phone').val();
-//    alert('phone');
-    $.ajax({
-      type:"get",
-      async:false,
-      url:'{{ url('home/code') }}',
-      data:{phone:phone},
-      success:function(data){
-        if(data == 'ok'){
-          alert('发送成功');
-        }
-      }
-    })
+      var phone = $('#phone').val();
+  //    alert('phone');
+          if(!(/^1[34578]\d{9}$/.test(phone))){
+              alert('用户名不正确');
+              return false;
+          } else {
+              $.ajax({
+                  type: "get",
+                  async: false,
+                  url: '{{ url('home/code') }}',
+                  data: {phone: phone},
+                  success: function (data) {
+                      if (data == 'ok') {
+                          alert('请在5分钟内完成注册');
+                      }
+                  }
+              })
+          }
   }
   </script>
 

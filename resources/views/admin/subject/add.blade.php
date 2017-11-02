@@ -1,9 +1,6 @@
 @extends('admin.public.parent')
 
 @section('content')
-
-
-
             <div class="row-content am-cf">
                 <div class="row">
 
